@@ -21,7 +21,12 @@ This repo is a GitHub template for Oxlint plugins. It is never published to npm 
    - On npmjs.com, package settings, Trusted Publisher, GitHub Actions: your user, the repo name, workflow `publish.yml`, environment `release`. Allow `npm publish` for direct publishing.
    - Account settings, Publishing access: "Require two-factor authentication and disallow tokens".
    - On GitHub, create the `release` environment (Settings, Environments). No secrets go in it.
-7. Install the pkg.pr.new and Renovate GitHub Apps on the repo, or delete `preview.yml` and `renovate.json`.
-8. Enable Discussions and private vulnerability reporting in the repo settings. Create the labels: `bug`, `false positive`, `false negative`, `new rule`, `enhancement`, `good first issue`, `help wanted`, `documentation`.
+7. Run `pnpm setup-repo`. It turns on auto-merge and adds a ruleset so nothing reaches `main` without green CI. That is what lets Renovate merge its own PRs. Admins bypass the ruleset, so `pnpm release` still pushes straight to `main`.
+8. Install the GitHub Apps, or delete the config for the ones you skip:
+   - Renovate (Mend). Dependency PRs merge themselves once CI is green. Majors of runtime dependencies wait for you. Config: `.github/renovate.json`.
+   - pkg.pr.new, for installable PR builds. Config: `preview.yml`.
+   - CodeRabbit, free on public repos, reviews every PR and approves once its comments are resolved. Config: `.coderabbit.yaml`.
+   - Macroscope, free for non-commercial open source after applying at macroscope.com/open-source. It reviews for correctness and its Approvability check approves low-risk PRs. Turn Approvability on under Settings, Repos, and add `renovate[bot]` under Skip PRs by Author. Config: `.macroscope/approvability.md`.
+9. Enable Discussions and private vulnerability reporting in the repo settings. Create the labels: `bug`, `false positive`, `false negative`, `new rule`, `enhancement`, `good first issue`, `help wanted`, `documentation`.
 
 Releasing after that is `pnpm release`.
