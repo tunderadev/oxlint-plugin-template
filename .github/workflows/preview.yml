@@ -2,12 +2,10 @@ name: Preview
 
 # Publishes every PR build to pkg.pr.new so reviewers can install it:
 #   pnpm add https://pkg.pr.new/<owner>/<repo>@<pr-number>
-# Needs the pkg.pr.new GitHub App installed on the repo.
+# Needs the pkg.pr.new GitHub App installed on the repo, or it fails on every PR.
 
 on:
   pull_request:
-  push:
-    branches: [main]
 
 permissions:
   contents: read
