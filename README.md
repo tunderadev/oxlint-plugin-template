@@ -1,4 +1,4 @@
-<img src="assets/logo.svg" width="96" align="right" alt="">
+<img src="https://raw.githubusercontent.com/__OWNER__/oxlint-plugin-template/main/assets/logo.svg" width="96" align="right" alt="">
 
 # oxlint-plugin-template
 
