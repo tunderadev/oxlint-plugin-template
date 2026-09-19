@@ -17,7 +17,7 @@ This repo is a GitHub template for Oxlint plugins. It is never published to npm 
 5. Run the checks: `pnpm check && pnpm test && pnpm build && pnpm dogfood`.
 6. Set up publishing, once:
    - Enable 2FA on npm (passkey; npm no longer offers authenticator apps).
-   - `npm publish --access public` a 0.0.1 from your laptop. npm asks for the passkey in a browser window.
+   - Log in with `npm login` from a directory outside the repo, then run `pnpm publish --access public` inside it to publish a 0.0.1. npm refuses every command inside the repo because `devEngines` pins pnpm, so registry commands here go through pnpm. It asks for the one-time code with `--otp` if your 2FA needs one.
    - On npmjs.com, package settings, Trusted Publisher, GitHub Actions: your user, the repo name, workflow `publish.yml`, environment `release`. Allow `npm publish` for direct publishing.
    - Account settings, Publishing access: "Require two-factor authentication and disallow tokens".
    - On GitHub, create the `release` environment (Settings, Environments). No secrets go in it.
